@@ -9,6 +9,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+	
+	private static Scene mainScene;
+	
 	@Override
 	public void start(Stage primarySatge) {
 		try {
@@ -18,13 +21,17 @@ public class Main extends Application {
 			scrollpane.setFitToHeight(true);
 			scrollpane.setFitToWidth(true);
 			
-			Scene mainScene = new Scene(scrollpane);
+			mainScene = new Scene(scrollpane);
 			primarySatge.setScene(mainScene);
 			primarySatge.setTitle("Primeiro Projeto com interface grafica e banco");
 			primarySatge.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static Scene getMainScene() {
+		return mainScene;
 	}
 
 	public static void main(String[] args) {

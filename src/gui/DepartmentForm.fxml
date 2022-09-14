@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane prefHeight="173.0" prefWidth="507.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+<AnchorPane prefHeight="173.0" prefWidth="507.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DepartmentFormController">
    <children>
       <GridPane layoutX="31.0" layoutY="18.0" prefHeight="104.0" prefWidth="460.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="18.0">
         <columnConstraints>
@@ -26,14 +25,14 @@
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="68.0" text="Id:" textAlignment="RIGHT" />
             <Label alignment="CENTER" prefHeight="22.0" prefWidth="73.0" text="Nome:" GridPane.rowIndex="1" />
-            <TextField editable="false" GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label textFill="#f80202" GridPane.columnIndex="2" />
-            <Label textFill="#fc0202" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="txtId" editable="false" GridPane.columnIndex="1" />
+            <TextField fx:id="txtNome" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="lbId" textFill="#f80202" GridPane.columnIndex="2" />
+            <Label fx:id="lbNome" textFill="#fc0202" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Button mnemonicParsing="false" text="Salvar" />
-                  <Button mnemonicParsing="false" text="Cancelar" />
+                  <Button fx:id="btSalvar" mnemonicParsing="false" onAction="#onBtSalvarAction" text="Salvar" />
+                  <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#onBtCancelarAction" text="Cancelar" />
                </children>
             </HBox>
          </children>

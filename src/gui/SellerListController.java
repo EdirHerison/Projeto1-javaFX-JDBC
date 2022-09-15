@@ -32,6 +32,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Department;
 import model.entities.Seller;
+import model.servicies.DepartmentService;
 import model.servicies.SellerService;
 
 public class SellerListController implements Initializable, DataChangeListener{
@@ -122,7 +123,8 @@ public class SellerListController implements Initializable, DataChangeListener{
 			
 			SellerFormController controller = loader.getController();
 			controller.setSeller(obj);
-			controller.setSellerService(new SellerService());
+			controller.setService(new SellerService(), new DepartmentService());
+			controller.loadAssociatedObjects();
 			controller.subcribeDataChangerListener(this);
 			controller.updateFormData();
 			
@@ -135,6 +137,7 @@ public class SellerListController implements Initializable, DataChangeListener{
 			dialoStage.showAndWait();
 		}
 		catch(IOException e) {
+			e.printStackTrace();
 			Alerts.showAlerts("IO Excepition", "Erro loading view", e.getMessage(), AlertType.ERROR);
 		}
 	}

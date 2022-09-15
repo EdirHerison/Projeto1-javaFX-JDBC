@@ -1,5 +1,6 @@
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +17,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -24,6 +27,8 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Department;
 import model.entities.Seller;
@@ -111,27 +116,27 @@ public class SellerListController implements Initializable, DataChangeListener{
 	}
 	
 	private void createDialogForm (Seller obj, String absoluteName, Stage parentSatge) {
-//		try {
-//			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-//			Pane pane = loader.load();
-//			
-//			SellerFormController controller = loader.getController();
-//			controller.setSeller(obj);
-//			controller.setSellerService(new SellerService());
-//			controller.subcribeDataChangerListener(this);
-//			controller.updateFormData();
-//			
-//			Stage dialoStage = new Stage();
-//			dialoStage.setTitle("Cadastro de novo Departamento");
-//			dialoStage.setScene(new Scene(pane));
-//			dialoStage.setResizable(false);
-//			dialoStage.initOwner(parentSatge);
-//			dialoStage.initModality(Modality.WINDOW_MODAL);
-//			dialoStage.showAndWait();
-//		}
-//		catch(IOException e) {
-//			Alerts.showAlerts("IO Excepition", "Erro loading view", e.getMessage(), AlertType.ERROR);
-//		}
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+			Pane pane = loader.load();
+			
+			SellerFormController controller = loader.getController();
+			controller.setSeller(obj);
+			controller.setSellerService(new SellerService());
+			controller.subcribeDataChangerListener(this);
+			controller.updateFormData();
+			
+			Stage dialoStage = new Stage();
+			dialoStage.setTitle("Cadastro de novo Vendedor");
+			dialoStage.setScene(new Scene(pane));
+			dialoStage.setResizable(false);
+			dialoStage.initOwner(parentSatge);
+			dialoStage.initModality(Modality.WINDOW_MODAL);
+			dialoStage.showAndWait();
+		}
+		catch(IOException e) {
+			Alerts.showAlerts("IO Excepition", "Erro loading view", e.getMessage(), AlertType.ERROR);
+		}
 	}
 
 	@Override
@@ -189,7 +194,7 @@ public class SellerListController implements Initializable, DataChangeListener{
 				updateTableView();
 			}
 			catch(DbIntegrityException e) {
-				Alerts.showAlerts("Erro ao remover Departamento", null, e.getMessage(), AlertType.ERROR);
+				Alerts.showAlerts("Erro ao remover Vendedor", null, e.getMessage(), AlertType.ERROR);
 			}
 		}
 		
